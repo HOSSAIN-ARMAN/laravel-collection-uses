@@ -17,5 +17,24 @@ Route::get('/collection-average', function () {
     return $result;
 });
 
-2)
 
+2)
+Route::get('/collection-max', function () {
+
+    $data = [
+        ['price' => 100, 'tax' => 20, 'status' => true ],
+        ['price' => 600, 'tax' => 40, 'status' => false],
+        ['price' => 300, 'tax' => 50, 'status' => false],
+        ['price' => 100, 'tax' => 10, 'status' => true ],
+    ];
+
+    $maxPrice = collect($data)->max(function ($data) {
+        return $data['price'];
+    });
+
+    $maxTax = collect($data)->max(function ($data) {
+       return $data['tax'];
+    });
+
+    return $maxPrice + $maxTax;
+});
