@@ -1,0 +1,21 @@
+1)
+Route::get('/collection-average', function () {
+
+    $data = [
+        ['price' => 100, 'tax' => 20, 'status' => true ],
+        ['price' => 600, 'tax' => 40, 'status' => false],
+        ['price' => 300, 'tax' => 50, 'status' => false],
+        ['price' => 100, 'tax' => 10, 'status' => true ],
+    ];
+
+    $result = collect($data)->average(function ($data) {
+        if (!$data['status']){
+            return null;
+        }
+        return $data['price'] + $data['tax'];
+    });
+    return $result;
+});
+
+2)
+
