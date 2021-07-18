@@ -38,3 +38,23 @@ Route::get('/collection-max', function () {
 
     return $maxPrice + $maxTax;
 });
+
+
+3)-------------------------
+
+Route::get('/collection-min-median', function () {
+
+    $data = [
+        ['price' => 100, 'tax' => 20, 'status' => true ],
+        ['price' => 600, 'tax' => 40, 'status' => false],
+        ['price' => 300, 'tax' => 50, 'status' => false],
+        ['price' => 100, 'tax' => 10, 'status' => true ],
+    ];
+
+    $median = collect($data)->median('price');
+    $min = collect($data)->min('price');
+
+    return $median + $min;
+});
+
+
